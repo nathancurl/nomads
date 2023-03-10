@@ -52,8 +52,6 @@ public class DataProcessor {
             }
         }
 
-
-        System.out.print(hashMap);
         return hashMap;
     }
 
@@ -78,11 +76,6 @@ public class DataProcessor {
             }
         }
         scanner.close();
-
-        // Print the countries for testing
-        for (Country country : countries) {
-            System.out.println(country);
-        }
 
         return countries;
     }

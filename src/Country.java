@@ -1,4 +1,4 @@
-public class Country {
+public class Country implements Comparable<Country>{
     String name, region, visa;
     int population, area;
     int rank;
@@ -13,12 +13,20 @@ public class Country {
         this.rank = setRank(visa);
     }
 
+    @Override
+    public int compareTo(Country c) {
+        return this.rank > c.rank ? 1 : (this.rank < c.rank ? -1 : 0);
+    }
+
     public int setRank(String visa){
         if (visa == null){
             return 0;
         }
-        if (visa.equals("visa free")) {
+        if (isInteger(visa)){
             return 3;
+        }
+        else if (visa.equals("visa free")) {
+            return 4;
         }
         else if(visa.equals("e-visa")){
             return 1;
@@ -29,11 +37,24 @@ public class Country {
         else if(visa.equals("visa on arrival")){
             return 2;
         }
+        else
         return 0;
     }
 
     public String toString(){
         return name + " is in the " + region + " region with a population of " + population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa ;
+    }
+
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+
+        return true;
     }
 
 }

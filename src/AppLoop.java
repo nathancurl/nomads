@@ -1,18 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 
 public class AppLoop {
     //main class intended to run application
     DestinationGenerator destinationGenerator;
     User user;
+    Scanner scanner = new Scanner(System.in);
 
 
 
@@ -20,10 +15,10 @@ public class AppLoop {
         login();
         favoritesPrompt();
         quitPrompt();
+        scanner.close();
     }
 
     void favoritesPrompt(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Were there any Destinations you would like to add to a list of favorites?");
         String faveResponse = scanner.nextLine();
         if (faveResponse.equals("no")) {
@@ -35,7 +30,7 @@ public class AppLoop {
     }
 
     void quitPrompt() throws FileNotFoundException {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to quit?");
         String quitResponse = scanner.nextLine();
         if (quitResponse.equals("yes")) {
@@ -55,7 +50,7 @@ public class AppLoop {
             //Initial System User Interactions and Display on the CLI
             System.out.print("Welcome to NOMAD Travel Co ! \n");
             //Creating a scanner to read user responses
-            Scanner scanner = new Scanner(System.in);
+            //Scanner scanner = new Scanner(System.in);
             //prompting the user to sign in
             System.out.print("Returning or New?");
             String loginResponse = scanner.nextLine();
@@ -67,36 +62,42 @@ public class AppLoop {
             } else {
                 CreateNewUser();
 
-            // these statements run if the expression is false// ...
             }
             //set favorites
             //quit prompt
-
+       // scanner.close();
         }
 
-    private void ReturningUser() throws FileNotFoundException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username :");
-        String userName = scanner.nextLine();
-
-        Path path = Paths.get(userName);
-        if (Files.exists(path)) {
-            System.out.println("Your profile exists!");
-            scanner.close();
-            user = new User(userName);
-            user.updateRetuningUser(userName);
-            Scanner scanner1 = new Scanner(System.in);
+    private void displayPrompt(User user) throws FileNotFoundException{
+      //  Scanner scanner = new Scanner(System.in);
             System.out.println("Would you like to search destinations?");
-            String searchResponse = scanner1.nextLine();
+            String searchResponse = scanner.nextLine();
             if (searchResponse.equals("yes")){
                 System.out.println("Destinations and travel requirements :");
                 displayNations(user);
             }
+           // scanner.close();
+        }
+
+    private void ReturningUser() throws FileNotFoundException {
+    //    Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your username :");
+        String userName = scanner.nextLine();
+
+        File file = new File("users", userName);
+
+        if (file.exists()) {
+            System.out.println("Your profile exists!");
+            user = new User(userName);
+            user.updateRetuningUser(userName);
+            displayPrompt(user);
 
         }
 
-        if (Files.notExists(path)) {
+
+        else {
             System.out.println("Your profile doesn't exist!");
+            CreateNewUser();
         }
 
 
@@ -105,29 +106,22 @@ public class AppLoop {
 
     private void CreateNewUser() throws FileNotFoundException {
         DataProcessor dataprocessor = new DataProcessor();
-        Scanner scanner = new Scanner(System.in);
+       // Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your username :");
         String userName = scanner.nextLine();
-        System.out.println(userName);
         System.out.println("What is your nation of origin? : ");
         String userNationality = scanner.nextLine();
-        System.out.println(userNationality);
         this.user = new User(userName, userNationality);
-        System.out.println("Would you like to search destinations?");
-        String searchResponse = scanner.nextLine();
-        if (searchResponse.equals("yes")){
-            System.out.println("Destinations and travel requirements :");
-            displayNations(user);
-        }
+        displayPrompt(user);
+
 
     }
-
-    //include exit within run4
 
 
     void displayNations(User user) throws FileNotFoundException {
         destinationGenerator = new DestinationGenerator();
         destinationGenerator.getDestinations(user);
+        destinationGenerator.displayDestinations();
 
     }
 
