@@ -79,7 +79,7 @@ public class AppLoop {
 
     void quit() throws FileNotFoundException {
         System.out.println("Thank you for using NOMAD Travel");
-        scanner.close();
+        //scanner.close();
         user.close();
     }
 
@@ -136,6 +136,16 @@ public class AppLoop {
         }
 
     }
+    private static String capitalizeWords(String str) {
+        String[] words = str.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1).toLowerCase())
+                    .append(" ");
+        }
+        return sb.toString().trim();
+    }
 
     private void CreateNewUser(String userName) throws FileNotFoundException {
         if (userName.equals("")){
@@ -143,10 +153,10 @@ public class AppLoop {
             userName = scanner.nextLine();
         }
         System.out.println("What is your nation of origin? Please capitalise it: ");
-        String userNationality = scanner.nextLine();
+        String userNationality = capitalizeWords(scanner.nextLine());
         while(!validCountry(userNationality)){
             System.out.println("Invalid country input! Please reenter nation of origin:");
-            userNationality = scanner.nextLine();
+            userNationality = capitalizeWords(scanner.nextLine());
         }
         this.user = new User(userName, userNationality);
 
