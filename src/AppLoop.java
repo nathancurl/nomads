@@ -112,10 +112,7 @@ public class AppLoop {
         Scanner fileScanner = new Scanner(new File( "data/visa.csv"));
         String line = fileScanner.nextLine();
         List<String> countries = Arrays.asList(line.split(","));
-        if (countries.contains(country)){
-            return true;
-        }
-        return false;
+        return countries.contains(country);
     }
 
     private void ReturningUser() throws FileNotFoundException {

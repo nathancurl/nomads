@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Arrays;
 
 public class DataProcessor {
-    private String visaFilePath = "data/visa.csv";
-    private String countriesFilePath = "data/countries.csv";
+    private final String visaFilePath = "data/visa.csv";
+    private final String countriesFilePath = "data/countries.csv";
     private String nationality;
-    private String[] target = {"United States", "Bangladesh", "Australia", "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China"};
+    private final String[] target = {"United States", "Bangladesh", "Australia", "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China"};
 
     private File getFile(String fileName) {
         return new File(fileName);
