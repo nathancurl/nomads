@@ -11,7 +11,7 @@ public class DataProcessor {
     private String visaFilePath = "data/visa.csv";
     private String countriesFilePath = "data/countries.csv";
     private String nationality;
-    private String[] target = {"United States", "Bangladesh", "Australia", "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco"};
+    private String[] target = {"United States", "Bangladesh", "Australia", "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China"};
 
     private File getFile(String fileName) {
         return new File(fileName);
