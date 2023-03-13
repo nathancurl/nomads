@@ -1,5 +1,5 @@
 # nomads
-Camille Lewis, Mustafa S., Nathaniel C. 
+Camille L., Mustafa S., Nathaniel C. 
 
 ## Mission Statement: 
 Unleash your inner adventurer and explore unforgettable experiences at your fingertips.
