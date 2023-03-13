@@ -61,7 +61,9 @@ public class User {
     public void setFavorites(String faves) {
         String[] words = faves.split(", ");
         for (String word : words) {
-            favorites.add(word);
+            if(!favorites.contains(word)){
+                favorites.add(word);
+            }
         }
     }
 }
