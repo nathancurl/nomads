@@ -42,7 +42,7 @@ public class Country implements Comparable<Country>{
     }
 
     public String toString(){
-        return name + " :" + "\n" + " is in the " + region + " region with a population of " + population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa + "/n";
+        return name + " :" + "\n" + " is in the " + region + " region with a population of " + population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa + "\n";
     }
 
     private boolean isInteger(String s) {

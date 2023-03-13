@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -106,6 +108,16 @@ public class AppLoop {
             }
         }
 
+    private boolean validCountry(String country) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File( "data/visa.csv"));
+        String line = fileScanner.nextLine();
+        List<String> countries = Arrays.asList(line.split(","));
+        if (countries.contains(country)){
+            return true;
+        }
+        return false;
+    }
+
     private void ReturningUser() throws FileNotFoundException {
         System.out.println("Enter your username :");
         String userName = scanner.nextLine().toLowerCase();
@@ -130,8 +142,12 @@ public class AppLoop {
             System.out.println("Enter your username :");
             userName = scanner.nextLine();
         }
-        System.out.println("What is your nation of origin? : ");
+        System.out.println("What is your nation of origin? Please capitalise it: ");
         String userNationality = scanner.nextLine();
+        while(!validCountry(userNationality)){
+            System.out.println("Invalid country input! Please reenter nation of origin:");
+            userNationality = scanner.nextLine();
+        }
         this.user = new User(userName, userNationality);
 
     }
@@ -158,8 +174,9 @@ public class AppLoop {
             }
             mainMenu();
         } else {
+            System.out.println("Favorites:");
             for (String place : user.favorites) {
-                System.out.println("Favorites : " + user.favorites);
+                System.out.println(place);
             }
         }
         mainMenu();
