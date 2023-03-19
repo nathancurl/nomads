@@ -3,7 +3,8 @@ package nomads;
 public class Country implements Comparable<Country>{
     String name, region, visa;
     int population, area;
-    int rank;
+    int rank; //overallRank, visaRank
+    boolean outdoors, urban, cultural, food;
 
 
     public Country(String visa, String name, String region, int population, int area) {
