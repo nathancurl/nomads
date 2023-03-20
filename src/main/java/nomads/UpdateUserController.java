@@ -96,7 +96,7 @@ public class UpdateUserController implements Initializable {
 
     @FXML
     void onSearchDestinationButtonClicked(ActionEvent event) throws IOException {
-        changeScene(searchDestinationButton, "searchDestinations.fxml");
+        changeScene(searchDestinationButton, "destination-generator-view.fxml");
     }
 
     @FXML
