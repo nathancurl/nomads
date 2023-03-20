@@ -56,7 +56,7 @@
 --CHANGE COLUMN `Arable (%)` `Arable` TEXT NULL DEFAULT NULL ,
 --CHANGE COLUMN `Crops (%)` `Crops` TEXT NULL DEFAULT NULL ,
 --CHANGE COLUMN `Other (%)` `Other` TEXT NULL DEFAULT NULL ;
---SELECT * FROM countries;
+SELECT * FROM countries;
 --COMMIT;]]></console>
     </connection>
   </component>
