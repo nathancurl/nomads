@@ -19,7 +19,6 @@ public class MainApp extends Application {
     }
 
     public static void main(String[] args) {
-        DatabaseConnection dc = new DatabaseConnection();
-        dc.getConnection();
+        launch();
     }
 }
