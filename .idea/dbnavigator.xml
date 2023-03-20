@@ -13,51 +13,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="d97c83bc-12f4-4d8f-8ed3-e771bd173f12">
-      <console name="Connection" type="STANDARD" schema="nomads" session="Main"><![CDATA[--CREATE DATABASE nomads:
---CREATE TABLE countries(
---    Country CHAR,
---    Region CHAR,
---    Population INT,
---    Area INT,
---    Density DOUBLE,
---    Coastline DOUBLE,
---    Migration DOUBLE,
---    infantMortality DOUBLE,
---    GDP INT,
---    Literacy DOUBLE,
---    Phones DOUBLE,
---    Arable DOUBLE,
---    Crops DOUBLE,
---    Climate DOUBLE,
---    Birthrate DOUBLE,
---    Deathrate DOUBLE,
---    Agriculture DOUBLE,
---    Industry DOUBLE,
---    Service DOUBLE
---    Outdoors INT,
---    Urban INT,
---    Cultural INT,
---    Food INT);
---SELECT * FROM countries;
---COMMIT;
---ALTER TABLE `nomads`.`countries` 
---ADD COLUMN `Outdoors` INT NULL AFTER `Service`,
---ADD COLUMN `Urban` INT NULL AFTER `Outdoors`,
---ADD COLUMN `Cultural` INT NULL AFTER `Urban`,
---ADD COLUMN `Food` INT NULL AFTER `Cultural`,
-----CHANGE COLUMN `Area (sq. mi.)` `Area` INT NULL DEFAULT NULL ,
---CHANGE COLUMN `Pop. Density (per sq. mi.)` `Density` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Coastline (coast/area ratio)` `Coastline` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Net migration` `Migration` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Infant mortality (per 1000 births)` `infantMortality` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `GDP ($ per capita)` `GDP` INT NULL DEFAULT NULL ,
---CHANGE COLUMN `Literacy (%)` `Literacy` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Phones (per 1000)` `Phones` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Arable (%)` `Arable` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Crops (%)` `Crops` TEXT NULL DEFAULT NULL ,
---CHANGE COLUMN `Other (%)` `Other` TEXT NULL DEFAULT NULL ;
-SELECT * FROM countries;
---COMMIT;]]></console>
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

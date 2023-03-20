@@ -3,7 +3,7 @@ package nomads;
 public class Country implements Comparable<Country>{
     String name, region, visa; 
     boolean outdoors, urban, cultural, food;
-    Integer Population, Area;
+    int population, area, rank;
     Double Denstiy, Coastline, Migration, infantMortality, GDP, Literacy, Phones, Arable, Crops, Other, Climate, Birthrate, Deathrate, Agriculture, Industry, Service;
 
 
@@ -12,8 +12,8 @@ public class Country implements Comparable<Country>{
         this.name = name;
         this.region = region;
         this.visa = visa;
-        this.Population = population;
-        this.Area = area;
+        this.population = population;
+        this.area = area;
         this.rank = setRank(visa);
     }
 
