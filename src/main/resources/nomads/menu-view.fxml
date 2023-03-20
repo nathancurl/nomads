@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nomads.MenuController">
+   <top>
+      <ButtonBar fx:id="MenuButtonBAR" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="SearchButton" alignment="TOP_LEFT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onsearchtestbuttonClicked" text="Search Destinations" />
+            <Button fx:id="FavoritesButton" mnemonicParsing="false" onAction="#onFavoritesClicked" text="Favorites" />
+            <Button fx:id="QuitButton" mnemonicParsing="false" onAction="#onQuitClicked" text="Quit" />
+        </buttons>
+      </ButtonBar>
+   </top>
+</BorderPane>
