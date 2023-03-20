@@ -30,9 +30,18 @@ public class LoginController {
     private PasswordField passwordPasswordField;
 
     @FXML
-    protected void onLoginButtonClicked(ActionEvent e) throws SQLException {
+    protected void onLoginButtonClicked(ActionEvent e) throws SQLException, IOException {
         if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank())){
             validateLogin();
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.close();
+
+            // Load register view
+            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("update-user-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            stage.setTitle("Nomad Travels");
+            stage.setScene(scene);
+            stage.show();
         }else{
             warningLabel.setText("Please enter both username and password!");
         }
