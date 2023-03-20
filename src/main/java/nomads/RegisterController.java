@@ -7,13 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
@@ -43,7 +42,7 @@ public class RegisterController implements Initializable {
     private CheckBox foodCheckBox;
 
     @FXML
-    protected void onRegisterButtonClicked(ActionEvent e) throws SQLException, IOException {
+    protected void onRegisterButtonClicked(ActionEvent e) throws SQLException {
         if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank()) && (!nationalityComboBox.getSelectionModel().isEmpty())
                 || outdoorsCheckBox.isSelected() || urbanCheckBox.isSelected() || culturalCheckBox.isSelected() || foodCheckBox.isSelected()
                 && (!firstNameTextField.getText().isBlank()) && (!lastNameTextField.getText().isBlank())) {
@@ -54,16 +53,6 @@ public class RegisterController implements Initializable {
             warningLabel.setText("All fields are filled");
             System.out.println(User.getInstance());
             registerUser();
-
-            Stage stage = (Stage) registerButton.getScene().getWindow();
-            stage.close();
-
-            // Load register view
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("menu-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            stage.setTitle("Nomad Travels");
-            stage.setScene(scene);
-            stage.show();
         } else {
             warningLabel.setText("Please fill out all the required fields!");
         }

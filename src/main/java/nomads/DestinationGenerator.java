@@ -1,6 +1,7 @@
 package nomads;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -9,7 +10,7 @@ public class DestinationGenerator {
     User user;
     
 
-    ArrayList<Country> generate(User user) throws FileNotFoundException {
+    ArrayList<Country> generate(User user) throws FileNotFoundException, SQLException {
         dataProcessor = new DataProcessor();
         this.user = user;
         return order(dataProcessor.generateCountries(dataProcessor.generateVisaInfo(this.user)));
@@ -21,7 +22,7 @@ public class DestinationGenerator {
     }
 
 
-    ArrayList<Country> getDestinations(User user) throws FileNotFoundException{
+    ArrayList<Country> getDestinations(User user) throws FileNotFoundException, SQLException {
         return generate(user);
     }
 }

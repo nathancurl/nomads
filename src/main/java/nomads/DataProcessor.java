@@ -1,8 +1,16 @@
 package nomads;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -62,8 +70,25 @@ public class DataProcessor {
         return word.trim();
     }
 
-    ArrayList<Country> generateCountries(HashMap hashMap) throws FileNotFoundException {
+    ArrayList<Country> generateCountries(HashMap hashMap) throws FileNotFoundException, SQLException {
         ArrayList<Country> countries = new ArrayList<>();
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        String getCountryDataQuery = "SELECT * FROM USER WHERE country = '" + User.getInstance().getNationality() + "'";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+
+            while(resultSet.next()){
+                String region = resultSet.getString("Region");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+        connection.close();
         Scanner scanner = new Scanner(getFile(countriesFilePath));
         String line = scanner.nextLine();
         String[] values;

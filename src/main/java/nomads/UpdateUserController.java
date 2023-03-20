@@ -2,15 +2,8 @@ package nomads;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -112,7 +105,7 @@ public class UpdateUserController implements Initializable {
             User.getInstance().setPassword(passwordPasswordField.getText());
             System.out.println(User.getInstance());
             updateUser();
-            warningLabel.setText("User profile sucessfully updated");
+            warningLabel.setText("User profile successfully updated");
 
         } else {
             warningLabel.setText("Please fill out all the required fields!");
@@ -150,7 +143,7 @@ public class UpdateUserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nationalityComboBox.getItems().removeAll(nationalityComboBox.getItems());
         nationalityComboBox.getItems().addAll("United States", "Bangladesh", "Australia",
-                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China");
+                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco");
         nationalityComboBox.setValue(User.getInstance().getNationality());
         passwordPasswordField.setText(User.getInstance().getPassword());
         firstNameTextField.setText(User.getInstance().getFirstName());
