@@ -66,6 +66,19 @@ public class LoginController {
             while(resultSet.next()){
                 if(resultSet.getInt(1) == 1){
                     warningLabel.setText("Your profile exists!");
+
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.close();
+
+                    // Load register view
+                    FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("menu-view.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    stage.setTitle("Nomad Travels");
+                    stage.setScene(scene);
+                    stage.show();
+
+
+
                 }else{
                     warningLabel.setText("Invalid Login! Try again.");
                 }
