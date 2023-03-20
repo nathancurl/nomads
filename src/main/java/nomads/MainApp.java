@@ -11,6 +11,12 @@ import java.io.IOException;
 
 public class MainApp extends Application {
 
+    final static String[] countries = {"Argentina", "Australia", "Bangladesh", "Belgium",
+            "Bolivia", "Brazil", "Canada", "China", "Colombia", "Egypt", "France",
+            "Greece", "India", "Italy", "Jamaica", "Japan", "Maldives", "Mexico",
+            "New Zealand", "Nigeria", "Saudi Arabia", "Senegal", "Spain",
+            "South Africa", "Turkey", "United Kingdom", "United States", "Uruguay",
+            "Venezuela", "Vietnam"};
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));

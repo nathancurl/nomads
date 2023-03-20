@@ -45,6 +45,10 @@ public class Country implements Comparable<Country>{
         return 0;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public String toString(){
         return name + " :" + "\n" + " is in the " + region + " region with a population of " + population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa + "\n";
     }

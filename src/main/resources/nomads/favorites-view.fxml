@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nomads.FavoritesController">
+   <center>
+      <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #B1D4E0;" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="favlistView" layoutX="342.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="94.0" />
+            <Label fx:id="ListFavTitle" layoutX="342.0" layoutY="34.0" text="List of Favorites " textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="removeDestButton" layoutX="99.0" layoutY="154.0" mnemonicParsing="false" onAction="#onRemoveDestClicked" text="Remove Destination" />
+            <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="39.0" prefHeight="17.0" prefWidth="318.0" text="Label" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <ButtonBar fx:id="ButtonBar" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #D4F1F4;" BorderPane.alignment="CENTER">
+        <buttons>
+          <Button fx:id="SearchDestButton" mnemonicParsing="false" onAction="#onSearchDestClicked" style="-fx-background-color: #D4F1F4;" text="Search Destinations" />
+            <Button fx:id="favButton" mnemonicParsing="false" onAction="#onFavButtonClicked" style="-fx-background-color: #D4F1F4;" text="Favorites" />
+            <Button fx:id="updateUserButton" mnemonicParsing="false" onAction="#onUpdateUserClicked" style="-fx-background-color: #D4F1F4;" text="Update User Info" />
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#onQuitButtonClicked" style="-fx-background-color: #D4F1F4;" text="Quit" />
+        </buttons>
+      </ButtonBar>
+   </top>
+</BorderPane>

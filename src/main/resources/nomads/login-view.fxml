@@ -21,14 +21,9 @@
                         <Font name="Arial" size="25.0" />
                     </font>
                 </Label>
-                <Button fx:id="loginButton" layoutX="60.0" layoutY="281.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" style="-fx-background-color: #05445E;" text="Login" textFill="#fcf7f7" />
+                <Button fx:id="loginButton" layoutX="89.0" layoutY="279.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" style="-fx-background-color: #05445E;" text="Login" textFill="#fcf7f7" />
                 <Label fx:id="warningLabel" alignment="CENTER" layoutX="70.0" layoutY="101.0" prefHeight="17.0" prefWidth="271.0" textFill="#e10909" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="38.0" />
-                <Label layoutX="141.0" layoutY="286.0" text="Don't have an account?">
-                    <font>
-                        <Font size="11.0" />
-                    </font>
-                </Label>
-                <Button fx:id="registerButton" layoutX="263.0" layoutY="280.0" mnemonicParsing="false" onAction="#onRegisterButtonClicked" style="-fx-background-color: #05445E;" text="Register" textFill="#fcf7f7" />
+                <Button fx:id="registerButton" layoutX="179.0" layoutY="280.0" mnemonicParsing="false" onAction="#onRegisterButtonClicked" style="-fx-background-color: #D4F1F4;" text="Don't have an account?" textFill="#1048e4" />
             </children>
         </AnchorPane>
     </right>

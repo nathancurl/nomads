@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import static nomads.MainApp.changeScene;
+import static nomads.MainApp.countries;
 
 public class RegisterController implements Initializable {
     @FXML
@@ -55,7 +56,7 @@ public class RegisterController implements Initializable {
             warningLabel.setText("All fields are filled");
             System.out.println(User.getInstance());
             registerUser();
-            changeScene(registerButton, "update-user-view.fxml");
+            changeScene(registerButton, "destination-generator-view.fxml");
         } else {
             warningLabel.setText("Please fill out all the required fields!");
         }
@@ -91,8 +92,7 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nationalityComboBox.getItems().removeAll(nationalityComboBox.getItems());
-        nationalityComboBox.getItems().addAll("United States", "Bangladesh", "Australia",
-                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China");
+        nationalityComboBox.getItems().addAll(countries);
     }
 
     private void registerUser() throws SQLException {

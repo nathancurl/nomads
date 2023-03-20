@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import static nomads.MainApp.countries;
+
 public class DataProcessor {
     private final String visaFilePath = "data/visa.csv";
     private final String countriesFilePath = "data/countries.csv";
     private String nationality;
-    private final String[] target = {"United States", "Bangladesh", "Australia", "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China"};
-
     private File getFile(String fileName) {
         return new File(fileName);
     }
@@ -45,7 +45,7 @@ public class DataProcessor {
 
 
         // Filter the hashmap with target countries
-        List targetList = Arrays.asList(target);
+        List targetList = Arrays.asList(countries);
         //System.out.println(Arrays.toString(keys));
         for (String country : keys) {
             if (!targetList.contains(country)) {
@@ -62,48 +62,54 @@ public class DataProcessor {
     }
 
     ArrayList<Country> generateCountries(HashMap hashMap) throws FileNotFoundException, SQLException {
-        ArrayList<Country> countries = new ArrayList<>();
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.getConnection();
+        ArrayList<Country> destinations = new ArrayList<>();
+//        DatabaseConnection databaseConnection = new DatabaseConnection();
+//        Connection connection = databaseConnection.getConnection();
+//
+//        for (String country : target) {
+//            String getCountryDataQuery = "SELECT * FROM COUNTRY WHERE Country = '" + country + "'";
+//
+//            try {
+//                Statement statement = connection.createStatement();
+//                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+//                String Region = "", Population = "", Area = "";
+//                while (resultSet.next()) {
+//                    Region = resultSet.getString("Region");
+//                    Population = resultSet.getString("Population");
+//                    Area = resultSet.getString("Area");
+//                }
+//                countries.add(new Country((String) hashMap.get(getString(country)), country, Region, Integer.parseInt(Population), Integer.parseInt(Area)));
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                e.getCause();
+//            }
+//        }
 
-        for (String country : target) {
-            String getCountryDataQuery = "SELECT * FROM COUNTRY WHERE Country = '" + country + "'";
 
-            try {
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
-                String Region = "", Population = "", Area = "";
-                while (resultSet.next()) {
-                    Region = resultSet.getString("Region");
-                    Population = resultSet.getString("Population");
-                    Area = resultSet.getString("Area");
-                }
-                countries.add(new Country((String) hashMap.get(getString(country)), country, Region, Integer.parseInt(Population), Integer.parseInt(Area)));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-        }
+//        connection.close();
 
 
-        connection.close();
         Scanner scanner = new Scanner(getFile(countriesFilePath));
         String line = scanner.nextLine();
         String[] values;
-        List targetList = Arrays.asList(target);
+        List targetList = Arrays.asList(countries);
 
         // Get info of countries and generate Country object
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             values = line.split(",");
             if (targetList.contains(getString(values[0]))) {
-                countries.add(new Country((String) hashMap.get(getString(values[0])), getString(values[0]), getString(values[1]), Integer.parseInt(getString(values[2])), Integer.parseInt(getString(values[3]))));
+                destinations.add(new Country((String) hashMap.get(getString(values[0])), getString(values[0]), getString(values[1]), Integer.parseInt(getString(values[2])), Integer.parseInt(getString(values[3]))));
             }
         }
         scanner.close();
 
-        return countries;
+        for (Country country: destinations){
+            System.out.println(country.getName());
+        }
+
+        return destinations;
     }
 
 }

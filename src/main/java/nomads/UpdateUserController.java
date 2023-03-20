@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import static nomads.MainApp.changeScene;
+import static nomads.MainApp.countries;
 
 public class UpdateUserController implements Initializable {
 
@@ -90,8 +91,8 @@ public class UpdateUserController implements Initializable {
     }
 
     @FXML
-    void onFavoritesButtonClicked(ActionEvent event) {
-
+    void onFavoritesButtonClicked(ActionEvent event) throws IOException {
+        changeScene(favoritesButton, "favorites-view.fxml");
     }
 
     @FXML
@@ -147,8 +148,7 @@ public class UpdateUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nationalityComboBox.getItems().removeAll(nationalityComboBox.getItems());
-        nationalityComboBox.getItems().addAll("United States", "Bangladesh", "Australia",
-                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China");
+        nationalityComboBox.getItems().addAll(countries);
         nationalityComboBox.setValue(User.getInstance().getNationality());
         passwordPasswordField.setText(User.getInstance().getPassword());
         firstNameTextField.setText(User.getInstance().getFirstName());

@@ -33,7 +33,7 @@ public class LoginController {
             if(validateLogin()){
                 updateUser();
                 System.out.println(User.getInstance());
-                changeScene(loginButton, "update-user-view.fxml");
+                changeScene(loginButton, "destination-generator-view.fxml");
             }
         }else{
             warningLabel.setText("Please enter both username and password!");
