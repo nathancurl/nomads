@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static nomads.MainApp.changeScene;
+
 public class LoginController {
     @FXML
     private Button loginButton;
@@ -32,32 +34,45 @@ public class LoginController {
     protected void onLoginButtonClicked(ActionEvent e) throws SQLException, IOException {
         if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank())){
             validateLogin();
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            stage.close();
-
-            // Load register view
-            FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("update-user-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            stage.setTitle("Nomad Travels");
-            stage.setScene(scene);
-            stage.show();
+            updateUser();
+            System.out.println(User.getInstance());
+            changeScene(loginButton, "update-user-view.fxml");
         }else{
             warningLabel.setText("Please enter both username and password!");
         }
 
     }
+
+    private void updateUser() {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+            String getCountryDataQuery = "SELECT * FROM USER WHERE username = '" + usernameTextField.getText() + "'";
+
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+                while (resultSet.next()) {
+                    User.getInstance().setUsername(resultSet.getString("username"));
+                    User.getInstance().setPassword(resultSet.getString("password"));
+                    User.getInstance().setFirstName(resultSet.getString("firstName"));
+                    User.getInstance().setLastName(resultSet.getString("lastName"));
+                    User.getInstance().setNationality(resultSet.getString("nationality"));
+                    User.getInstance().setOutdoors(resultSet.getInt("outdoors") == 1);
+                    User.getInstance().setCultural(resultSet.getInt("cultural") == 1);
+                    User.getInstance().setFood(resultSet.getInt("food") == 1);
+                    User.getInstance().setUrban(resultSet.getInt("urban") == 1);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+    }
+
     @FXML
     protected void onRegisterButtonClicked(ActionEvent e) throws IOException {
-        // Close existing stage
-        Stage stage = (Stage) loginButton.getScene().getWindow();
-        stage.close();
-
-        // Load register view
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("register-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Nomad Travels");
-        stage.setScene(scene);
-        stage.show();
+        changeScene(loginButton, "register-view.fxml");
     }
 
     private void validateLogin() throws SQLException {
@@ -74,18 +89,6 @@ public class LoginController {
             while(resultSet.next()){
                 if(resultSet.getInt(1) == 1){
                     warningLabel.setText("Your profile exists!");
-
-                    Stage stage = (Stage) loginButton.getScene().getWindow();
-                    stage.close();
-
-                    // Load register view
-                    FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("menu-view.fxml"));
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                    stage.setTitle("Nomad Travels");
-                    stage.setScene(scene);
-                    stage.show();
-
-
 
                 }else{
                     warningLabel.setText("Invalid Login! Try again.");

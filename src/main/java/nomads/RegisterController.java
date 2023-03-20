@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import static nomads.MainApp.changeScene;
+
 public class RegisterController implements Initializable {
     @FXML
     private Button registerButton;
@@ -42,7 +44,7 @@ public class RegisterController implements Initializable {
     private CheckBox foodCheckBox;
 
     @FXML
-    protected void onRegisterButtonClicked(ActionEvent e) throws SQLException {
+    protected void onRegisterButtonClicked(ActionEvent e) throws SQLException, IOException {
         if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank()) && (!nationalityComboBox.getSelectionModel().isEmpty())
                 || outdoorsCheckBox.isSelected() || urbanCheckBox.isSelected() || culturalCheckBox.isSelected() || foodCheckBox.isSelected()
                 && (!firstNameTextField.getText().isBlank()) && (!lastNameTextField.getText().isBlank())) {
@@ -53,6 +55,7 @@ public class RegisterController implements Initializable {
             warningLabel.setText("All fields are filled");
             System.out.println(User.getInstance());
             registerUser();
+            changeScene(registerButton, "update-user-view.fxml");
         } else {
             warningLabel.setText("Please fill out all the required fields!");
         }
@@ -65,16 +68,7 @@ public class RegisterController implements Initializable {
     }
     @FXML
     protected void onLoginButtonClicked(ActionEvent e) throws IOException {
-        // Close existing stage
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        stage.close();
-
-        // Load register view
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Nomad Travels");
-        stage.setScene(scene);
-        stage.show();
+        changeScene(registerButton, "login-view.fxml");
     }
     @FXML
     protected void onOutdoorsCheckBoxClicked(ActionEvent e) {
@@ -104,14 +98,15 @@ public class RegisterController implements Initializable {
     private void registerUser() throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
-        String registerQuery = "INSERT into USER (firstname, lastname, username, password, outdoors, urban, cultural, food)" +
+        String registerQuery = "INSERT into USER (firstname, lastname, username, password, outdoors, urban, cultural, food, nationality)" +
                 "VALUES ('" + User.getInstance().getFirstName() + "','" + User.getInstance().getLastName() +
                 "','" + User.getInstance().getUsername() +
                 "','" + User.getInstance().getPassword() +
                 "','" + User.getInstance().isOutdoors() +
                 "','" + User.getInstance().isUrban() +
                 "','" + User.getInstance().isCultural() +
-                "','" + User.getInstance().isFood() + "')";
+                "','" + User.getInstance().isFood() +
+                "','" + User.getInstance().getNationality() + "')";
 
         try {
             Statement statement = connection.createStatement();

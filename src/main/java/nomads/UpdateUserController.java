@@ -2,7 +2,9 @@ package nomads;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -12,6 +14,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+
+import static nomads.MainApp.changeScene;
 
 public class UpdateUserController implements Initializable {
 
@@ -91,8 +95,8 @@ public class UpdateUserController implements Initializable {
     }
 
     @FXML
-    void onSearchDestinationButtonClicked(ActionEvent event) {
-
+    void onSearchDestinationButtonClicked(ActionEvent event) throws IOException {
+        changeScene(searchDestinationButton, "searchDestinations.fxml");
     }
 
     @FXML
@@ -118,11 +122,12 @@ public class UpdateUserController implements Initializable {
         String updateQuery = "UPDATE USER " +
                 "SET firstname = '" + User.getInstance().getFirstName() +
                 "', lastname = '" + User.getInstance().getLastName() +
+                "', username = '" + User.getInstance().getUsername() +
                 "', password = '" + User.getInstance().getPassword() +
-                "', outdoors = '" + User.getInstance().isOutdoors() +
-                "', urban = '" + User.getInstance().isUrban() +
-                "', cultural = '" + User.getInstance().isCultural() +
-                "', food = '" + User.getInstance().isFood() + "' WHERE username = '" + User.getInstance().getUsername() + "'";
+                "', outdoors = " + User.getInstance().isOutdoors() +
+                ", urban = " + User.getInstance().isUrban() +
+                ", cultural = " + User.getInstance().isCultural() +
+                ", food = " + User.getInstance().isFood() + " WHERE username = '" + User.getInstance().getUsername() + "'";
 
         try {
             Statement statement = connection.createStatement();
@@ -143,7 +148,7 @@ public class UpdateUserController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nationalityComboBox.getItems().removeAll(nationalityComboBox.getItems());
         nationalityComboBox.getItems().addAll("United States", "Bangladesh", "Australia",
-                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco");
+                "Japan", "Brazil", "Spain", "Mexico", "Thailand", "Sweden", "Morocco", "China");
         nationalityComboBox.setValue(User.getInstance().getNationality());
         passwordPasswordField.setText(User.getInstance().getPassword());
         firstNameTextField.setText(User.getInstance().getFirstName());

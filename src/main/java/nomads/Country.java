@@ -4,7 +4,7 @@ public class Country implements Comparable<Country>{
     String name, region, visa; 
     boolean outdoors, urban, cultural, food;
     int population, area, rank;
-    Double Denstiy, Coastline, Migration, infantMortality, GDP, Literacy, Phones, Arable, Crops, Other, Climate, Birthrate, Deathrate, Agriculture, Industry, Service;
+    Double Density, Coastline, Migration, infantMortality, GDP, Literacy, Phones, Arable, Crops, Other, Climate, Birthrate, Deathrate, Agriculture, Industry, Service;
 
 
 

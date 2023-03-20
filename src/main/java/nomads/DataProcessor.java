@@ -1,21 +1,12 @@
 package nomads;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 
 public class DataProcessor {
     private final String visaFilePath = "data/visa.csv";
@@ -75,19 +66,27 @@ public class DataProcessor {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-        String getCountryDataQuery = "SELECT * FROM USER WHERE country = '" + User.getInstance().getNationality() + "'";
+        for (String country : target) {
+            String getCountryDataQuery = "SELECT * FROM COUNTRY WHERE Country = '" + country + "'";
 
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+                String Region = "", Population = "", Area = "";
+                while (resultSet.next()) {
+                    Region = resultSet.getString("Region");
+                    Population = resultSet.getString("Population");
+                    Area = resultSet.getString("Area");
+                }
+                countries.add(new Country((String) hashMap.get(getString(country)), country, Region, Integer.parseInt(Population), Integer.parseInt(Area)));
 
-            while(resultSet.next()){
-                String region = resultSet.getString("Region");
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
         }
+
+
         connection.close();
         Scanner scanner = new Scanner(getFile(countriesFilePath));
         String line = scanner.nextLine();
