@@ -2,13 +2,10 @@ package nomads;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -33,10 +30,11 @@ public class LoginController {
     @FXML
     protected void onLoginButtonClicked(ActionEvent e) throws SQLException, IOException {
         if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank())){
-            validateLogin();
-            updateUser();
-            System.out.println(User.getInstance());
-            changeScene(loginButton, "update-user-view.fxml");
+            if(validateLogin()){
+                updateUser();
+                System.out.println(User.getInstance());
+                changeScene(loginButton, "update-user-view.fxml");
+            }
         }else{
             warningLabel.setText("Please enter both username and password!");
         }
@@ -75,7 +73,7 @@ public class LoginController {
         changeScene(loginButton, "register-view.fxml");
     }
 
-    private void validateLogin() throws SQLException {
+    private boolean validateLogin() throws SQLException {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
@@ -89,9 +87,10 @@ public class LoginController {
             while(resultSet.next()){
                 if(resultSet.getInt(1) == 1){
                     warningLabel.setText("Your profile exists!");
-
+                    return true;
                 }else{
                     warningLabel.setText("Invalid Login! Try again.");
+                    return false;
                 }
             }
         }catch (Exception e){
@@ -99,6 +98,7 @@ public class LoginController {
             e.getCause();
         }
         connection.close();
+        return false;
     }
 
 
