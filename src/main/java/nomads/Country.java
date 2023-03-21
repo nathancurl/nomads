@@ -2,7 +2,7 @@ package nomads;
 
 public class Country implements Comparable<Country>{
     String name, region, visa; 
-    boolean outdoors, urban, cultural, food, isFavorite = false;
+    boolean outdoors, urban, cultural, food;
     int population, area, rank;
     Double Density, Coastline, Migration, infantMortality, GDP, Literacy, Phones, Arable, Crops, Other, Climate, Birthrate, Deathrate, Agriculture, Industry, Service;
 
@@ -56,13 +56,6 @@ public class Country implements Comparable<Country>{
         return this.name;
     }
 
-    public void makeFavorite(){
-        isFavorite = true;
-    }
-
-    public void makeUnfavorite(){
-        isFavorite = false;
-    }
 
 
     public String toString(){

@@ -74,7 +74,7 @@ public class DestinationGeneratorController implements Initializable {
         try {
             ArrayList<Country> destinations = destinationGenerator.getDestinations(User.getInstance());
             User.getInstance().setDestinations(destinations);
-            String[] destinationStringArr = destinationGenerator.getStringArr(destinations);
+            String[] destinationStringArr = User.getInstance().getStringArr(destinations);
             listView.getItems().addAll(destinationStringArr);
             listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                 @Override
@@ -83,7 +83,7 @@ public class DestinationGeneratorController implements Initializable {
                     warningLabel.setText("Country selected: " + countryName);
                     User.getInstance().setPresentCountry(countryName);
                     try {
-                        changeScene(SearchDestButton, "country-card-view.fxml");
+                        changeScene(quitButton, "country-card-view.fxml");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

@@ -23,13 +23,5 @@ public class DestinationGenerator {
     public ArrayList<Country> getDestinations(User user) throws FileNotFoundException, SQLException {
         return generate(user);
     }
-
-    public String[] getStringArr(ArrayList<Country> destinations) {
-        String[] stringArr = new String[destinations.size()];
-        for (int i = 0; i < destinations.size(); i++){
-            stringArr[i] = destinations.get(i).getName();
-        }
-        return stringArr;
-    }
 }
 

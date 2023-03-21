@@ -12,12 +12,14 @@
    <center>
       <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #B1D4E0;" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="favlistView" layoutX="342.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="94.0" />
-            <Label fx:id="ListFavTitle" layoutX="354.0" layoutY="34.0" text="List of Favorites " textAlignment="CENTER" underline="true">
+            <ListView fx:id="favlistView" layoutX="200.0" layoutY="94.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.topAnchor="94.0" />
+            <Label fx:id="ListFavTitle" layoutX="212.0" layoutY="22.0" text="List of Favorites " textAlignment="CENTER" underline="true">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
+            <Button fx:id="removeDestButton" layoutX="227.0" layoutY="312.0" mnemonicParsing="false" onAction="#onRemoveDestClicked" text="Remove From Favorites" />
+            <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="167.0" layoutY="62.0" prefHeight="17.0" prefWidth="249.0" textFill="#f20000" />
          </children>
       </AnchorPane>
    </center>

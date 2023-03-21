@@ -32,16 +32,35 @@ public class User {
 
     public void addToFavorites(Country country) {
         if (!favorites.contains(country)){
-            country.makeFavorite();
             favorites.add(country);
         }
+
+    }
+
+    public boolean contains(ArrayList<Country> countries){
+        for (Country country: countries){
+            if(country.getName().equals(country.getName())){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeFromFavorites(Country country){
-        if (favorites.contains(country)){
-            country.makeUnfavorite();
-            favorites.remove(country);
+        for (Country favorite: favorites){
+            if(favorite.getName().equals(country.getName())){
+                favorites.remove(favorite);
+            }
         }
+
+    }
+
+    public String[] getStringArr(ArrayList<Country> destinations) {
+        String[] stringArr = new String[destinations.size()];
+        for (int i = 0; i < destinations.size(); i++){
+            stringArr[i] = destinations.get(i).getName();
+        }
+        return stringArr;
     }
 
     public void setFirstName(String firstName) {

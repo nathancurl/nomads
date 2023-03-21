@@ -6,10 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.FileInputStream;
+
+import static nomads.MainApp.changeScene;
 
 public class CountryCardController implements Initializable {
     @FXML
@@ -20,6 +25,9 @@ public class CountryCardController implements Initializable {
 
     @FXML
     private Button favoriteButton;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     private ImageView flagImageView;
@@ -52,17 +60,24 @@ public class CountryCardController implements Initializable {
 
     @FXML
     void onFavoriteButtonClicked(ActionEvent event) {
-        if(country.isFavorite){
+        if(User.getInstance().contains(User.getInstance().getFavorites())){
             User.getInstance().removeFromFavorites(country);
+            favoriteButton.setText("Favorite");
         }else{
             User.getInstance().addToFavorites(country);
+            favoriteButton.setText("Unfavorite");
         }
+    }
+
+    @FXML
+    void onBackButtonClicked(ActionEvent event) throws IOException {
+        changeScene(backButton, "destination-generator-view.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Update favoriteButton Text
-        if(country.isFavorite){
+        if(User.getInstance().contains(User.getInstance().getFavorites())){
             favoriteButton.setText("Unfavorite");
         }else{
             favoriteButton.setText("Favorite");
@@ -73,11 +88,31 @@ public class CountryCardController implements Initializable {
         visaLabel.setText(country.getVisa());
         areaLabel.setText(String.valueOf(country.getArea()));
         populationLabel.setText(String.valueOf(country.getPopulation()));
+        regionLabel.setText(country.getRegion());
 
         // Update checkboxes
         outdoorsCheckBox.setSelected(country.isOutdoors());
+        outdoorsCheckBox.setDisable(true);
         urbanCheckBox.setSelected(country.isUrban());
+        urbanCheckBox.setDisable(true);
         culturalCheckBox.setSelected(country.isCultural());
+        culturalCheckBox.setDisable(true);
         foodCheckBox.setSelected(country.isFood());
+        foodCheckBox.setDisable(true);
+
+        // Update image
+        String flagImageURL = "images/flags/";
+        String countryName = country.getName().replaceAll(" ", "");// make the space go awa
+
+        InputStream stream = null;
+        try {
+            stream = new FileInputStream(flagImageURL + countryName +".png");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        Image image = new Image(stream);
+        flagImageView.setImage(image);
+
+
     }
 }
