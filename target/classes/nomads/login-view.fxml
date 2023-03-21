@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nomads.LoginController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
+            fx:controller="nomads.LoginController">
     <right>
-        <AnchorPane prefHeight="400.0" prefWidth="385.0" style="-fx-background-color: #D4F1F4;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="385.0" style="-fx-background-color: #D4F1F4;"
+                    BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="63.0" layoutY="152.0" text="Username:" />
-                <Label layoutX="64.0" layoutY="188.0" text="Password:" />
-                <TextField fx:id="usernameTextField" layoutX="149.0" layoutY="148.0" promptText="Username" />
-                <PasswordField fx:id="passwordPasswordField" layoutX="149.0" layoutY="183.0" promptText="Password" />
+                <Label layoutX="63.0" layoutY="152.0" text="Username:"/>
+                <Label layoutX="64.0" layoutY="188.0" text="Password:"/>
+                <TextField fx:id="usernameTextField" layoutX="149.0" layoutY="148.0" promptText="Username"/>
+                <PasswordField fx:id="passwordPasswordField" layoutX="149.0" layoutY="183.0" promptText="Password"/>
                 <Label layoutX="99.0" layoutY="59.0" text="Traveller Login">
                     <font>
-                        <Font name="Arial" size="25.0" />
+                        <Font name="Arial" size="25.0"/>
                     </font>
                 </Label>
-                <Button fx:id="loginButton" layoutX="89.0" layoutY="279.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" style="-fx-background-color: #05445E;" text="Login" textFill="#fcf7f7" />
-                <Label fx:id="warningLabel" alignment="CENTER" layoutX="70.0" layoutY="101.0" prefHeight="17.0" prefWidth="271.0" textFill="#e10909" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="38.0" />
-                <Button fx:id="registerButton" layoutX="179.0" layoutY="280.0" mnemonicParsing="false" onAction="#onRegisterButtonClicked" style="-fx-background-color: #D4F1F4;" text="Don't have an account?" textFill="#1048e4" />
+                <Button fx:id="loginButton" layoutX="89.0" layoutY="279.0" mnemonicParsing="false"
+                        onAction="#onLoginButtonClicked" style="-fx-background-color: #05445E;" text="Login"
+                        textFill="#fcf7f7"/>
+                <Label fx:id="warningLabel" alignment="CENTER" layoutX="70.0" layoutY="101.0" prefHeight="17.0"
+                       prefWidth="271.0" textFill="#e10909" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="38.0"/>
+                <Button fx:id="registerButton" layoutX="179.0" layoutY="280.0" mnemonicParsing="false"
+                        onAction="#onRegisterButtonClicked" style="-fx-background-color: #D4F1F4;"
+                        text="Don't have an account?" textFill="#1048e4"/>
             </children>
         </AnchorPane>
     </right>
     <left>
-        <AnchorPane prefHeight="400.0" prefWidth="221.0" style="-fx-background-color: #05445E;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="221.0" style="-fx-background-color: #05445E;"
+                    BorderPane.alignment="CENTER">
             <children>
                 <Label layoutX="68.0" layoutY="107.0" text="Nomad" textFill="#fcf9f9">
                     <font>
-                        <Font name="Arial Bold" size="25.0" />
+                        <Font name="Arial Bold" size="25.0"/>
                     </font>
                 </Label>
                 <Label layoutX="64.0" layoutY="147.0" text="Travels Co." textFill="#f5efef">
                     <font>
-                        <Font name="Arial" size="18.0" />
+                        <Font name="Arial" size="18.0"/>
                     </font>
                 </Label>
                 <Label layoutX="25.0" layoutY="354.0" text="Copyright (c). All Rights Reserved " textFill="#f5f0f0">
                     <font>
-                        <Font size="12.0" />
+                        <Font size="12.0"/>
                     </font>
                 </Label>
             </children>

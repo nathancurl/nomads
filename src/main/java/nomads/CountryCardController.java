@@ -49,7 +49,7 @@ public class CountryCardController implements Initializable {
 
     @FXML
     void onFavoriteButtonClicked(ActionEvent event) {
-        if (User.getInstance().contains(User.getInstance().getFavorites())) {
+        if (User.getInstance().contains(country)) {
             User.getInstance().removeFromFavorites(country);
             favoriteButton.setText("Favorite");
         } else {
@@ -66,7 +66,7 @@ public class CountryCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Update favoriteButton Text
-        if (User.getInstance().contains(User.getInstance().getFavorites())) {
+        if (User.getInstance().contains(country)) {
             favoriteButton.setText("Unfavorite");
         } else {
             favoriteButton.setText("Favorite");

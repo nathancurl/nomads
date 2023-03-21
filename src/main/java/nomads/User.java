@@ -37,9 +37,9 @@ public class User {
 
     }
 
-    public boolean contains(ArrayList<Country> countries) {
-        for (Country country : countries) {
-            if (country.getName().equals(country.getName())) {
+    public boolean contains(Country country) {
+        for (Country favorite : favorites) {
+            if (country.getName().equals(favorite.getName())) {
                 return true;
             }
         }
