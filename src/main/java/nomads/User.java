@@ -12,7 +12,7 @@ public class User {
     String firstName, lastName, nationality, username, password;
     boolean outdoors, urban, cultural, food;
 
-    ArrayList<String> favorites = new ArrayList<>();
+    ArrayList<Country> favorites = new ArrayList<>();
     ArrayList<Country> destinations;
 
 
@@ -27,6 +27,22 @@ public class User {
 
     public ArrayList<Country> getDestinations(){
         return destinations;
+    }
+
+    public ArrayList<Country> getFavorites() {
+        return favorites;
+    }
+
+    public void addToFavorites(Country country) {
+        if (!favorites.contains(country)){
+            favorites.add(country);
+        }
+    }
+
+    public void removeFromFavorites(Country country){
+        if (favorites.contains(country)){
+            favorites.remove(country);
+        }
     }
 
     public void setFirstName(String firstName) {
@@ -125,15 +141,5 @@ public class User {
         this.urban = urban;
         this.cultural = cultural;
         this.food = food;
-    }
-
-
-    public void setFavorites(String faves) {
-        String[] words = faves.split(", ");
-        for (String word : words) {
-            if(!favorites.contains(word)){
-                favorites.add(word);
-            }
-        }
     }
 }

@@ -51,7 +51,6 @@ public class FavoritesController {
     @FXML
     private Button updateUserButton;
 
-
     @FXML
     private Label warningLabel;
 
