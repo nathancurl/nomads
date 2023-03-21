@@ -2,6 +2,7 @@ package nomads;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,11 +13,20 @@ public class User {
     boolean outdoors, urban, cultural, food;
 
     ArrayList<String> favorites = new ArrayList<>();
+    ArrayList<Country> destinations;
 
 
     public static User getInstance(){
         return user;
 
+    }
+
+    public void setDestinations(ArrayList<Country> destinations){
+        this.destinations = destinations;
+    }
+
+    public ArrayList<Country> getDestinations(){
+        return destinations;
     }
 
     public void setFirstName(String firstName) {

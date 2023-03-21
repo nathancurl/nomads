@@ -81,6 +81,7 @@ public class DestinationGeneratorController implements Initializable {
 
         try {
             ArrayList<Country> destinations = destinationGenerator.getDestinations(User.getInstance());
+            User.getInstance().setDestinations(destinations);
             String[] destinationStringArr = destinationGenerator.getStringArr(destinations);
             listView.getItems().addAll(destinationStringArr);
             listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
