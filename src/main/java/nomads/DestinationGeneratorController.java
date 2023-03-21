@@ -76,6 +76,7 @@ public class DestinationGeneratorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+
         DestinationGenerator destinationGenerator = new DestinationGenerator();
 
         try {
