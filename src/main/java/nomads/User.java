@@ -1,11 +1,7 @@
 package nomads;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.File;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+
 
 public class User {
     private static final User user = new User();
@@ -14,6 +10,7 @@ public class User {
 
     ArrayList<Country> favorites = new ArrayList<>();
     ArrayList<Country> destinations;
+    Country presentCountry;
 
 
     public static User getInstance(){
@@ -35,12 +32,14 @@ public class User {
 
     public void addToFavorites(Country country) {
         if (!favorites.contains(country)){
+            country.makeFavorite();
             favorites.add(country);
         }
     }
 
     public void removeFromFavorites(Country country){
         if (favorites.contains(country)){
+            country.makeUnfavorite();
             favorites.remove(country);
         }
     }
@@ -141,5 +140,22 @@ public class User {
         this.urban = urban;
         this.cultural = cultural;
         this.food = food;
+    }
+
+    public void setPresentCountry(String countryName) {
+        presentCountry = getCountry(countryName);
+    }
+
+    public Country getPresentCountry(){
+        return this.presentCountry;
+    }
+
+    public Country getCountry(String countryName){
+        for (Country country: destinations){
+            if (country.getName().equals(countryName)){
+                return country;
+            }
+        }
+        return null;
     }
 }

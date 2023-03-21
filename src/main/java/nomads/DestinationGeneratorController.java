@@ -6,14 +6,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -21,11 +15,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static nomads.MainApp.changeScene;
-import static nomads.MainApp.countries;
 
 public class DestinationGeneratorController implements Initializable {
     @FXML
@@ -87,7 +79,9 @@ public class DestinationGeneratorController implements Initializable {
             listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                    warningLabel.setText("Country selected: " +listView.getSelectionModel().getSelectedItem());
+                    String countryName = listView.getSelectionModel().getSelectedItem();
+                    warningLabel.setText("Country selected: " + countryName);
+                    User.getInstance().setPresentCountry(countryName);
                 }
             });
 
