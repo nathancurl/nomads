@@ -12,14 +12,11 @@ import java.io.IOException;
 public class MainApp extends Application {
 
     final static String[] countries = {"Argentina", "Australia", "Bangladesh", "Belgium",
-            "Bolivia", "Brazil", "Canada", "China", "Colombia", "Egypt", "France",
-            "Greece", "India", "Italy", "Jamaica", "Japan", "Maldives", "Mexico",
-            "New Zealand", "Nigeria", "Saudi Arabia", "Senegal", "Spain",
-            "South Africa", "Turkey", "United Kingdom", "United States", "Uruguay",
-            "Venezuela", "Vietnam"};
-
-
-    String[] favcountries;
+            "Brazil", "Chad", "Chile", "Colombia", "Egypt", "Finland", "France", "Greece",
+            "Iran", "Jamaica", "Japan", "Maldives", "Mongolia", "New Zealand", "Niger",
+            "Saudi Arabia", "Senegal", "South Africa", "Spain", "Sri Lanka", "Turkey",
+            "United Kingdom", "United States", "Uruguay", "Venezuela", "Vietnam"};
+    
 
     @FXML
     public static void changeScene(Button button, String viewPath) throws IOException {
