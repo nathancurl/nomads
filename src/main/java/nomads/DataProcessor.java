@@ -18,7 +18,7 @@ public class DataProcessor {
         return new File(fileName);
     }
 
-    HashMap generateVisaInfo(User user) throws FileNotFoundException {
+    private HashMap updateVisaInfo(User user) throws FileNotFoundException {
         this.nationality = user.nationality;
         HashMap<String, String> hashMap = new HashMap<String, String>();
         Scanner scanner = new Scanner(getFile(visaFilePath));
@@ -56,60 +56,70 @@ public class DataProcessor {
         return hashMap;
     }
 
-    private String getString(String word) {
-        word = word.substring(1, word.length() - 1);
-        return word.trim();
-    }
-
-    ArrayList<Country> generateCountries(HashMap hashMap) throws FileNotFoundException, SQLException {
+    private ArrayList<Country> updateGeneralInfo(HashMap hashMap) throws SQLException {
         ArrayList<Country> destinations = new ArrayList<>();
-//        DatabaseConnection databaseConnection = new DatabaseConnection();
-//        Connection connection = databaseConnection.getConnection();
-//
-//        for (String country : target) {
-//            String getCountryDataQuery = "SELECT * FROM COUNTRY WHERE Country = '" + country + "'";
-//
-//            try {
-//                Statement statement = connection.createStatement();
-//                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
-//                String Region = "", Population = "", Area = "";
-//                while (resultSet.next()) {
-//                    Region = resultSet.getString("Region");
-//                    Population = resultSet.getString("Population");
-//                    Area = resultSet.getString("Area");
-//                }
-//                countries.add(new Country((String) hashMap.get(getString(country)), country, Region, Integer.parseInt(Population), Integer.parseInt(Area)));
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                e.getCause();
-//            }
-//        }
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
 
+        for (String country : countries) {
+            String getCountryDataQuery = "SELECT * FROM COUNTRIES WHERE Country = '" + country + "'";
 
-//        connection.close();
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+                String Region = "";
+                int Population = 0, Area = 0;
+                while (resultSet.next()) {
+                    Region = resultSet.getString("Region");
+                    Population = resultSet.getInt("Population");
+                    Area = resultSet.getInt("Area");
+                }
+                destinations.add(new Country((String) hashMap.get(country), country, Region, Population, Area));
 
-
-        Scanner scanner = new Scanner(getFile(countriesFilePath));
-        String line = scanner.nextLine();
-        String[] values;
-        List targetList = Arrays.asList(countries);
-
-        // Get info of countries and generate Country object
-        while (scanner.hasNextLine()) {
-            line = scanner.nextLine();
-            values = line.split(",");
-            if (targetList.contains(getString(values[0]))) {
-                destinations.add(new Country((String) hashMap.get(getString(values[0])), getString(values[0]), getString(values[1]), Integer.parseInt(getString(values[2])), Integer.parseInt(getString(values[3]))));
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
             }
         }
-        scanner.close();
 
-        for (Country country: destinations){
-            System.out.println(country.getName());
-        }
+
+        connection.close();
 
         return destinations;
+    }
+
+    private ArrayList<Country> updatePreferences(ArrayList<Country> destinations) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        for (Country country : destinations) {
+            String getPreferencesQuery = "SELECT * FROM PREFERENCES WHERE country = '" + country.getName() + "'";
+
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(getPreferencesQuery);
+                while (resultSet.next()) {
+                    int outdoors = resultSet.getInt("outdoors");
+                    int cultural = resultSet.getInt("cultural");
+                    int food = resultSet.getInt("food");
+                    int urban = resultSet.getInt("urban");
+                    country.updatePreferences(outdoors, cultural, food, urban);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                e.getCause();
+            }
+        }
+
+
+        connection.close();
+
+        return destinations;
+    }
+
+    ArrayList<Country> generateCountries(User user) throws FileNotFoundException, SQLException {
+        return updatePreferences(updateGeneralInfo(updateVisaInfo(user)));
     }
 
 }

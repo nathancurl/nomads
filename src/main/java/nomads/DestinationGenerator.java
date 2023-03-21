@@ -7,12 +7,11 @@ import java.util.Collections;
 
 public class DestinationGenerator {
     DataProcessor dataProcessor;
-    User user;
+
 
     private ArrayList<Country> generate(User user) throws FileNotFoundException, SQLException {
         dataProcessor = new DataProcessor();
-        this.user = user;
-        return order(dataProcessor.generateCountries(dataProcessor.generateVisaInfo(this.user)));
+        return order(dataProcessor.generateCountries(user));
     }
 
     private ArrayList<Country> order(ArrayList<Country> countries) {

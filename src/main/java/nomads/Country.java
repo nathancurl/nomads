@@ -17,6 +17,13 @@ public class Country implements Comparable<Country>{
         this.rank = setRank(visa);
     }
 
+    public void updatePreferences(int outdoors, int cultural, int food, int urban){
+        this.outdoors = outdoors == 1;
+        this.cultural = cultural == 1;
+        this.food = food == 1;
+        this.urban = urban == 1;
+    }
+
     @Override
     public int compareTo(Country c) {
         return this.rank > c.rank ? 1 : (this.rank < c.rank ? -1 : 0);
@@ -50,7 +57,10 @@ public class Country implements Comparable<Country>{
     }
 
     public String toString(){
-        return name + " :" + "\n" + " is in the " + region + " region with a population of " + population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa + "\n";
+        return name + " :" + "\n" + " is in the " + region + " region with a population of " +
+                population + " and a " + area + " sq. mi. area. Visa Requirement: " + visa +
+                " Outdoors: " + outdoors + " Food: " + food +" Urban: " + urban +
+                " Cultural: " + cultural +"\n";
     }
 
     private boolean isInteger(String s) {
