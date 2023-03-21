@@ -82,6 +82,11 @@ public class DestinationGeneratorController implements Initializable {
                     String countryName = listView.getSelectionModel().getSelectedItem();
                     warningLabel.setText("Country selected: " + countryName);
                     User.getInstance().setPresentCountry(countryName);
+                    try {
+                        changeScene(SearchDestButton, "country-card-view.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             });
 

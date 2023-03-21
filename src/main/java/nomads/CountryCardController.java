@@ -48,13 +48,36 @@ public class CountryCardController implements Initializable {
     @FXML
     private Label warningLabel;
 
+    Country country = User.getInstance().presentCountry;
+
     @FXML
     void onFavoriteButtonClicked(ActionEvent event) {
-
+        if(country.isFavorite){
+            User.getInstance().removeFromFavorites(country);
+        }else{
+            User.getInstance().addToFavorites(country);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Update favoriteButton Text
+        if(country.isFavorite){
+            favoriteButton.setText("Unfavorite");
+        }else{
+            favoriteButton.setText("Favorite");
+        }
 
+        // Update labels
+        nameLabel.setText(country.getName());
+        visaLabel.setText(country.getVisa());
+        areaLabel.setText(String.valueOf(country.getArea()));
+        populationLabel.setText(String.valueOf(country.getPopulation()));
+
+        // Update checkboxes
+        outdoorsCheckBox.setSelected(country.isOutdoors());
+        urbanCheckBox.setSelected(country.isUrban());
+        culturalCheckBox.setSelected(country.isCultural());
+        foodCheckBox.setSelected(country.isFood());
     }
 }

@@ -84,4 +84,35 @@ public class Country implements Comparable<Country>{
         return true;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public String getVisa() {
+        return visa;
+    }
+
+    public boolean isOutdoors() {
+        return outdoors;
+    }
+
+    public boolean isUrban() {
+        return urban;
+    }
+
+    public boolean isCultural() {
+        return cultural;
+    }
+
+    public boolean isFood() {
+        return food;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public int getArea() {
+        return area;
+    }
 }
