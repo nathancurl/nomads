@@ -2,9 +2,7 @@ package nomads;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -63,7 +61,7 @@ public class UpdateUserController implements Initializable {
     private Label warningLabel;
 
     @FXML
-    protected void getNationalityComboBoxSelected(ActionEvent e){
+    protected void getNationalityComboBoxSelected(ActionEvent e) {
         User.getInstance().setNationality((String) nationalityComboBox.getSelectionModel().getSelectedItem().toString());
     }
 
@@ -77,14 +75,17 @@ public class UpdateUserController implements Initializable {
     protected void onOutdoorsCheckBoxClicked(ActionEvent e) {
         User.getInstance().setOutdoors(outdoorsCheckBox.isSelected());
     }
+
     @FXML
     protected void onUrbanCheckBoxClicked(ActionEvent e) {
         User.getInstance().setUrban(urbanCheckBox.isSelected());
     }
+
     @FXML
     protected void onCulturalCheckBoxClicked(ActionEvent e) {
         User.getInstance().setCultural(culturalCheckBox.isSelected());
     }
+
     @FXML
     protected void onFoodCheckBoxClicked(ActionEvent e) {
         User.getInstance().setFood(foodCheckBox.isSelected());
@@ -133,7 +134,7 @@ public class UpdateUserController implements Initializable {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(updateQuery);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }

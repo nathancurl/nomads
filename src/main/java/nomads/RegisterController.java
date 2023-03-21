@@ -2,11 +2,8 @@ package nomads;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,25 +61,30 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    protected void getNationalityComboBoxSelected(ActionEvent e){
+    protected void getNationalityComboBoxSelected(ActionEvent e) {
         User.getInstance().setNationality((String) nationalityComboBox.getSelectionModel().getSelectedItem().toString());
     }
+
     @FXML
     protected void onLoginButtonClicked(ActionEvent e) throws IOException {
         changeScene(registerButton, "login-view.fxml");
     }
+
     @FXML
     protected void onOutdoorsCheckBoxClicked(ActionEvent e) {
         User.getInstance().setOutdoors(outdoorsCheckBox.isSelected());
     }
+
     @FXML
     protected void onUrbanCheckBoxClicked(ActionEvent e) {
         User.getInstance().setUrban(urbanCheckBox.isSelected());
     }
+
     @FXML
     protected void onCulturalCheckBoxClicked(ActionEvent e) {
         User.getInstance().setCultural(culturalCheckBox.isSelected());
     }
+
     @FXML
     protected void onFoodCheckBoxClicked(ActionEvent e) {
         User.getInstance().setFood(foodCheckBox.isSelected());
@@ -111,7 +113,7 @@ public class RegisterController implements Initializable {
         try {
             Statement statement = connection.createStatement();
             statement.executeUpdate(registerQuery);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }

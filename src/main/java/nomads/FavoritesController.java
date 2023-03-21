@@ -1,22 +1,17 @@
 package nomads;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +55,7 @@ public class FavoritesController implements Initializable {
         favlistView = new ListView<String>();
 
     }
-    
+
 
     @FXML
     void onFavButtonClicked(ActionEvent event) throws IOException {
@@ -109,12 +104,7 @@ public class FavoritesController implements Initializable {
         favlistView.getItems().clear();
         favlistView.getItems().addAll(User.getInstance().getStringArr(User.getInstance().getFavorites()));
 
-        }
-
-
-
-
-
+    }
 
 
     @Override

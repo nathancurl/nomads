@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class   MainApp extends Application {
+public class MainApp extends Application {
 
     final static String[] countries = {"Argentina", "Australia", "Bangladesh", "Belgium",
             "Bolivia", "Brazil", "Canada", "China", "Colombia", "Egypt", "France",
@@ -19,17 +19,7 @@ public class   MainApp extends Application {
             "Venezuela", "Vietnam"};
 
 
-      String[] favcountries;
-
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Nomad Travels");
-        stage.setScene(scene);
-        stage.show();
-    }
+    String[] favcountries;
 
     @FXML
     public static void changeScene(Button button, String viewPath) throws IOException {
@@ -46,5 +36,14 @@ public class   MainApp extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Nomad Travels");
+        stage.setScene(scene);
+        stage.show();
     }
 }

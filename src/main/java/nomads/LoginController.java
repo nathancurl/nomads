@@ -29,13 +29,13 @@ public class LoginController {
 
     @FXML
     protected void onLoginButtonClicked(ActionEvent e) throws SQLException, IOException {
-        if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank())){
-            if(validateLogin()){
+        if ((!usernameTextField.getText().isBlank()) && (!passwordPasswordField.getText().isBlank())) {
+            if (validateLogin()) {
                 updateUser();
                 System.out.println(User.getInstance());
                 changeScene(loginButton, "destination-generator-view.fxml");
             }
-        }else{
+        } else {
             warningLabel.setText("Please enter both username and password!");
         }
 
@@ -45,27 +45,27 @@ public class LoginController {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
-            String getCountryDataQuery = "SELECT * FROM USER WHERE username = '" + usernameTextField.getText() + "'";
+        String getCountryDataQuery = "SELECT * FROM USER WHERE username = '" + usernameTextField.getText() + "'";
 
-            try {
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
-                while (resultSet.next()) {
-                    User.getInstance().setUsername(resultSet.getString("username"));
-                    User.getInstance().setPassword(resultSet.getString("password"));
-                    User.getInstance().setFirstName(resultSet.getString("firstName"));
-                    User.getInstance().setLastName(resultSet.getString("lastName"));
-                    User.getInstance().setNationality(resultSet.getString("nationality"));
-                    User.getInstance().setOutdoors(resultSet.getInt("outdoors") == 1);
-                    User.getInstance().setCultural(resultSet.getInt("cultural") == 1);
-                    User.getInstance().setFood(resultSet.getInt("food") == 1);
-                    User.getInstance().setUrban(resultSet.getInt("urban") == 1);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                e.getCause();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getCountryDataQuery);
+            while (resultSet.next()) {
+                User.getInstance().setUsername(resultSet.getString("username"));
+                User.getInstance().setPassword(resultSet.getString("password"));
+                User.getInstance().setFirstName(resultSet.getString("firstName"));
+                User.getInstance().setLastName(resultSet.getString("lastName"));
+                User.getInstance().setNationality(resultSet.getString("nationality"));
+                User.getInstance().setOutdoors(resultSet.getInt("outdoors") == 1);
+                User.getInstance().setCultural(resultSet.getInt("cultural") == 1);
+                User.getInstance().setFood(resultSet.getInt("food") == 1);
+                User.getInstance().setUrban(resultSet.getInt("urban") == 1);
             }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     @FXML
@@ -78,22 +78,22 @@ public class LoginController {
         Connection connection = databaseConnection.getConnection();
 
         String verifyQuery = "SELECT COUNT(1) FROM USER WHERE USERNAME = '"
-                +   usernameTextField.getText() + "' AND PASSWORD = '" + passwordPasswordField.getText() +"'";
+                + usernameTextField.getText() + "' AND PASSWORD = '" + passwordPasswordField.getText() + "'";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(verifyQuery);
 
-            while(resultSet.next()){
-                if(resultSet.getInt(1) == 1){
+            while (resultSet.next()) {
+                if (resultSet.getInt(1) == 1) {
                     warningLabel.setText("Your profile exists!");
                     return true;
-                }else{
+                } else {
                     warningLabel.setText("Invalid Login! Try again.");
                     return false;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }

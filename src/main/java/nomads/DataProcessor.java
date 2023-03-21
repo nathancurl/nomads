@@ -14,6 +14,7 @@ public class DataProcessor {
     private final String visaFilePath = "data/visa.csv";
     private final String countriesFilePath = "data/countries.csv";
     private String nationality;
+
     private File getFile(String fileName) {
         return new File(fileName);
     }

@@ -9,61 +9,50 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.io.FileInputStream;
 
 import static nomads.MainApp.changeScene;
 
 public class CountryCardController implements Initializable {
+    Country country = User.getInstance().presentCountry;
     @FXML
     private Label areaLabel;
-
     @FXML
     private CheckBox culturalCheckBox;
-
     @FXML
     private Button favoriteButton;
-
     @FXML
     private Button backButton;
-
     @FXML
     private ImageView flagImageView;
-
     @FXML
     private CheckBox foodCheckBox;
-
     @FXML
     private Label nameLabel;
-
     @FXML
     private CheckBox outdoorsCheckBox;
-
     @FXML
     private Label populationLabel;
-
     @FXML
     private Label regionLabel;
-
     @FXML
     private CheckBox urbanCheckBox;
-
     @FXML
     private Label visaLabel;
-
     @FXML
     private Label warningLabel;
 
-    Country country = User.getInstance().presentCountry;
-
     @FXML
     void onFavoriteButtonClicked(ActionEvent event) {
-        if(User.getInstance().contains(User.getInstance().getFavorites())){
+        if (User.getInstance().contains(User.getInstance().getFavorites())) {
             User.getInstance().removeFromFavorites(country);
             favoriteButton.setText("Favorite");
-        }else{
+        } else {
             User.getInstance().addToFavorites(country);
             favoriteButton.setText("Unfavorite");
         }
@@ -77,9 +66,9 @@ public class CountryCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Update favoriteButton Text
-        if(User.getInstance().contains(User.getInstance().getFavorites())){
+        if (User.getInstance().contains(User.getInstance().getFavorites())) {
             favoriteButton.setText("Unfavorite");
-        }else{
+        } else {
             favoriteButton.setText("Favorite");
         }
 
@@ -106,7 +95,7 @@ public class CountryCardController implements Initializable {
 
         InputStream stream = null;
         try {
-            stream = new FileInputStream(flagImageURL + countryName +".png");
+            stream = new FileInputStream(flagImageURL + countryName + ".png");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

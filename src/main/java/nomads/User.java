@@ -13,17 +13,17 @@ public class User {
     Country presentCountry;
 
 
-    public static User getInstance(){
+    public static User getInstance() {
         return user;
 
     }
 
-    public void setDestinations(ArrayList<Country> destinations){
-        this.destinations = destinations;
+    public ArrayList<Country> getDestinations() {
+        return destinations;
     }
 
-    public ArrayList<Country> getDestinations(){
-        return destinations;
+    public void setDestinations(ArrayList<Country> destinations) {
+        this.destinations = destinations;
     }
 
     public ArrayList<Country> getFavorites() {
@@ -31,24 +31,24 @@ public class User {
     }
 
     public void addToFavorites(Country country) {
-        if (!favorites.contains(country)){
+        if (!favorites.contains(country)) {
             favorites.add(country);
         }
 
     }
 
-    public boolean contains(ArrayList<Country> countries){
-        for (Country country: countries){
-            if(country.getName().equals(country.getName())){
+    public boolean contains(ArrayList<Country> countries) {
+        for (Country country : countries) {
+            if (country.getName().equals(country.getName())) {
                 return true;
             }
         }
         return false;
     }
 
-    public void removeFromFavorites(Country country){
-        for (Country favorite: favorites){
-            if(favorite.getName().equals(country.getName())){
+    public void removeFromFavorites(Country country) {
+        for (Country favorite : favorites) {
+            if (favorite.getName().equals(country.getName())) {
                 favorites.remove(favorite);
             }
         }
@@ -57,30 +57,10 @@ public class User {
 
     public String[] getStringArr(ArrayList<Country> destinations) {
         String[] stringArr = new String[destinations.size()];
-        for (int i = 0; i < destinations.size(); i++){
+        for (int i = 0; i < destinations.size(); i++) {
             stringArr[i] = destinations.get(i).getName();
         }
         return stringArr;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setOutdoors(boolean outdoors) {
@@ -103,36 +83,56 @@ public class User {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getNationality() {
         return nationality;
     }
 
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int isOutdoors() {
-        return outdoors? 1:0;
+        return outdoors ? 1 : 0;
     }
 
     public int isUrban() {
-        return urban? 1:0;
+        return urban ? 1 : 0;
     }
 
     public int isCultural() {
-        return cultural? 1:0;
+        return cultural ? 1 : 0;
     }
 
     public int isFood() {
-        return food? 1:0;
+        return food ? 1 : 0;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class User {
                 '}';
     }
 
-    public void loginUpdate(String firstName, String lastName, String nationality, boolean outdoors, boolean urban, boolean cultural, boolean food){
+    public void loginUpdate(String firstName, String lastName, String nationality, boolean outdoors, boolean urban, boolean cultural, boolean food) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nationality = nationality;
@@ -161,17 +161,17 @@ public class User {
         this.food = food;
     }
 
+    public Country getPresentCountry() {
+        return this.presentCountry;
+    }
+
     public void setPresentCountry(String countryName) {
         presentCountry = getCountry(countryName);
     }
 
-    public Country getPresentCountry(){
-        return this.presentCountry;
-    }
-
-    public Country getCountry(String countryName){
-        for (Country country: destinations){
-            if (country.getName().equals(countryName)){
+    public Country getCountry(String countryName) {
+        for (Country country : destinations) {
+            if (country.getName().equals(countryName)) {
                 return country;
             }
         }
