@@ -62,7 +62,8 @@ public class FavoritesController {
     
 
     @FXML
-    void onFavButtonClicked(ActionEvent event) {
+    void onFavButtonClicked(ActionEvent event) throws IOException {
+        changeScene(favButton, "destination-generator-view.fxml");
         warningLabel.setText("You are already in the favorites view");
     }
 
