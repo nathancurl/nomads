@@ -72,6 +72,8 @@ public class DestinationGeneratorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        warningLabel.setText("Welcome to your personalized list of recommended travel destinations!");
+
         DestinationGenerator destinationGenerator = new DestinationGenerator();
 
         try {

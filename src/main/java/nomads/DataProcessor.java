@@ -11,18 +11,15 @@ import java.util.*;
 import static nomads.MainApp.countries;
 
 public class DataProcessor {
-    private final String visaFilePath = "data/visa.csv";
-    private final String countriesFilePath = "data/countries.csv";
-    private String nationality;
 
-    private File getFile(String fileName) {
-        return new File(fileName);
+    private File getFile() {
+        return new File("data/visa.csv");
     }
 
     private HashMap updateVisaInfo(User user) throws FileNotFoundException {
-        this.nationality = user.nationality;
-        HashMap<String, String> hashMap = new HashMap<String, String>();
-        Scanner scanner = new Scanner(getFile(visaFilePath));
+        String nationality = user.nationality;
+        HashMap<String, String> hashMap = new HashMap<>();
+        Scanner scanner = new Scanner(getFile());
         String line = scanner.nextLine();
         String[] keys = line.split(",");
         String[] values = new String[keys.length];
@@ -46,8 +43,7 @@ public class DataProcessor {
 
 
         // Filter the hashmap with target countries
-        List targetList = Arrays.asList(countries);
-        //System.out.println(Arrays.toString(keys));
+        List<String> targetList = Arrays.asList(countries);
         for (String country : keys) {
             if (!targetList.contains(country)) {
                 hashMap.remove(country);
@@ -104,7 +100,8 @@ public class DataProcessor {
                     int cultural = resultSet.getInt("cultural");
                     int food = resultSet.getInt("food");
                     int urban = resultSet.getInt("urban");
-                    country.updatePreferences(outdoors, cultural, food, urban);
+                    String description = resultSet.getString("description");
+                    country.updatePreferences(outdoors, cultural, food, urban, description);
                 }
 
             } catch (Exception e) {

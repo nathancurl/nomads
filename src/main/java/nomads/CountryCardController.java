@@ -23,6 +23,8 @@ public class CountryCardController implements Initializable {
     @FXML
     private Label areaLabel;
     @FXML
+    private Label descriptionLabel;
+    @FXML
     private CheckBox culturalCheckBox;
     @FXML
     private Button favoriteButton;
@@ -88,6 +90,7 @@ public class CountryCardController implements Initializable {
         culturalCheckBox.setDisable(true);
         foodCheckBox.setSelected(country.isFood());
         foodCheckBox.setDisable(true);
+        descriptionLabel.setText(country.getDescription());
 
         // Update image
         String flagImageURL = "images/flags/";

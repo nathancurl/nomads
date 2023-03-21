@@ -1,26 +1,28 @@
 package nomads;
 
+
 public class Country implements Comparable<Country> {
-    String name, region, visa;
-    boolean outdoors, urban, cultural, food;
-    int population, area, rank;
-    Double Density, Coastline, Migration, infantMortality, GDP, Literacy, Phones, Arable, Crops, Other, Climate, Birthrate, Deathrate, Agriculture, Industry, Service;
+    private final String name, region;
+    private String visa;
+    private boolean outdoors, urban, cultural, food;
+    private final int population, area, rank;
+    private String description;
 
 
     public Country(String visa, String name, String region, int population, int area) {
         this.name = name;
         this.region = region;
-        this.visa = visa;
         this.population = population;
         this.area = area;
-        this.rank = setVisaRank(visa);
+        this.rank = setVisaRank(visa) + setPreferenceRank();
     }
 
-    public void updatePreferences(int outdoors, int cultural, int food, int urban) {
+    public void updatePreferences(int outdoors, int cultural, int food, int urban, String description) {
         this.outdoors = outdoors == 1;
         this.cultural = cultural == 1;
         this.food = food == 1;
         this.urban = urban == 1;
+        this.description = description;
     }
 
     @Override
@@ -28,22 +30,45 @@ public class Country implements Comparable<Country> {
         return this.rank > c.rank ? 1 : (this.rank < c.rank ? -1 : 0);
     }
 
-    public int setVisaRank(String visa) {
+    private int setPreferenceRank(){
+        boolean[] preferenceBooleans = {this.outdoors == User.getInstance().outdoors,
+        this.food == User.getInstance().food, this.cultural == User.getInstance().cultural,
+        this.urban == User.getInstance().urban};
+
+        int count = 0;
+        for (boolean bool : preferenceBooleans) {
+            if (bool) {
+                count ++;
+            }
+        }
+        return count;
+    }
+
+    private int setVisaRank(String visa) {
         if (visa == null) {
             return 0;
         }
-        if (isInteger(visa)) {
+        if (visa.equals("-1")) {
+            this.visa = "Country of Nationality";
+        } else if (isInteger(visa)) {
+            this.visa = visa + " days";
             return 3;
         } else if (visa.equals("visa free")) {
+            this.visa = "Visa Free";
             return 4;
         } else if (visa.equals("e-visa")) {
+            this.visa = "E-Visa";
             return 1;
         } else if (visa.equals("visa required")) {
+            this.visa = "Visa Required";
             return 0;
         } else if (visa.equals("visa on arrival")) {
+            this.visa = "Visa on Arrival";
             return 2;
-        } else
-            return 0;
+        }
+
+        return 0;
+
     }
 
     public String getName() {
@@ -100,5 +125,9 @@ public class Country implements Comparable<Country> {
 
     public int getArea() {
         return area;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

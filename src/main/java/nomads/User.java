@@ -18,10 +18,6 @@ public class User {
 
     }
 
-    public ArrayList<Country> getDestinations() {
-        return destinations;
-    }
-
     public void setDestinations(ArrayList<Country> destinations) {
         this.destinations = destinations;
     }
@@ -47,11 +43,7 @@ public class User {
     }
 
     public void removeFromFavorites(Country country) {
-        for (Country favorite : favorites) {
-            if (favorite.getName().equals(country.getName())) {
-                favorites.remove(favorite);
-            }
-        }
+        favorites.removeIf(favorite -> favorite.getName().equals(country.getName()));
 
     }
 
