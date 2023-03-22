@@ -5,7 +5,7 @@ CREATE TABLE `nomads`.`preferences` (
   `food` INT(11) NULL,
   `outdoors` INT(11) NULL,
   `urban` INT(11) NULL,
-  `description` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`preferences_id`, `country`),
   UNIQUE INDEX `preferences_id_UNIQUE` (`preferences_id` ASC),
   UNIQUE INDEX `preferencescol_UNIQUE` (`country` ASC));
