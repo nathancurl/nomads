@@ -13,15 +13,30 @@ Unleash your inner adventurer and explore unforgettable experiences at your fing
 ```
 git clone git@github.com:ssameen/nomads.git\
 ```
+2. Install the jdbc server in your dependencies in Project Structure using the jar file given in the directory 'lib'. 
+Open local mysql server with port 8889.
+Then run the following command:
+```
+CREATE DATABASE NOMADS:
+USE NOMADS:
+```
 
-3. Run this compile and run command in your terminal:
+3. Go to the directory sqlScripts, and run both of the scripts to create
+tables 'user' and 'preferences'. From the same directory run the insertIntoPreferencesScript
+to populate your preferences table with the necessary information.
+
+4. Using an SQL Table Import Wizard (MySQLWorkbench is a useful tool for this) import the 'countries.csv' file from
+the 'docs' directory. Change the names of the columns to fit the SQL Queries (Columns are
+'Country', 'Area', 'Population', 'Region').
+
+5. Run this compile and run command in your terminal:
 
 ```
-javac AppLoop.java
-java AppLoop
+javac MainApp.java
+java MainApp
 ```
 
-4. Interact with the application in your terminal.
+6. Interact with the application in your terminal.
 
 ## Problem:
 
@@ -35,6 +50,10 @@ for travel, visa regulations, and aviation opportunities; however, the process i
 time-consuming. Motivated travelers will continue to jump through the required hoops to be able to travel, despite the
 lack of cohesive travel planning and organization software in the market.
 
+## Demo Run
+
+![DEMO RUN](images/demo_recording.gif)
+
 ## Logo:
 
-![LOGO](https://github.com/cp274-b6-2023/nomads/blob/7e437755dc87588463886ab5527da611bcbb10b1/src/logo.png)
+![LOGO](images/logo.png)
