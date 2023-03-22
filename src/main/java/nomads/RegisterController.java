@@ -98,25 +98,7 @@ public class RegisterController implements Initializable {
     }
 
     private void registerUser() throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.getConnection();
-        String registerQuery = "INSERT into USER (firstname, lastname, username, password, outdoors, urban, cultural, food, nationality)" +
-                "VALUES ('" + User.getInstance().getFirstName() + "','" + User.getInstance().getLastName() +
-                "','" + User.getInstance().getUsername() +
-                "','" + User.getInstance().getPassword() +
-                "','" + User.getInstance().isOutdoors() +
-                "','" + User.getInstance().isUrban() +
-                "','" + User.getInstance().isCultural() +
-                "','" + User.getInstance().isFood() +
-                "','" + User.getInstance().getNationality() + "')";
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(registerQuery);
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-        connection.close();
+        UserModel userModel = new UserModel();
+        userModel.registerUser();
     }
 }

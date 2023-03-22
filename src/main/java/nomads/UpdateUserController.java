@@ -60,6 +60,8 @@ public class UpdateUserController implements Initializable {
     @FXML
     private Label warningLabel;
 
+    UserModel userModel = new UserModel();
+
     @FXML
     protected void getNationalityComboBoxSelected(ActionEvent e) {
         User.getInstance().setNationality((String) nationalityComboBox.getSelectionModel().getSelectedItem().toString());
@@ -119,26 +121,7 @@ public class UpdateUserController implements Initializable {
     }
 
     private void updateUser() throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.getConnection();
-        String updateQuery = "UPDATE USER " +
-                "SET firstname = '" + User.getInstance().getFirstName() +
-                "', lastname = '" + User.getInstance().getLastName() +
-                "', username = '" + User.getInstance().getUsername() +
-                "', password = '" + User.getInstance().getPassword() +
-                "', outdoors = " + User.getInstance().isOutdoors() +
-                ", urban = " + User.getInstance().isUrban() +
-                ", cultural = " + User.getInstance().isCultural() +
-                ", food = " + User.getInstance().isFood() + " WHERE username = '" + User.getInstance().getUsername() + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(updateQuery);
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-        connection.close();
+        userModel.updateUserAfterLogin();
     }
 
     @FXML

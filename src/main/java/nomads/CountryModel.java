@@ -10,7 +10,7 @@ import java.util.*;
 
 import static nomads.MainApp.countries;
 
-public class DataProcessor {
+public class CountryModel {
 
     private File getFile() {
         return new File("data/visa.csv");
@@ -55,8 +55,8 @@ public class DataProcessor {
 
     private ArrayList<Country> updateGeneralInfo(HashMap hashMap) throws SQLException {
         ArrayList<Country> destinations = new ArrayList<>();
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.getConnection();
+        DatabaseConnectionModel databaseConnectionModel = new DatabaseConnectionModel();
+        Connection connection = databaseConnectionModel.getConnection();
 
         for (String country : countries) {
             String getCountryDataQuery = "SELECT * FROM COUNTRIES WHERE Country = '" + country + "'";
@@ -86,8 +86,8 @@ public class DataProcessor {
     }
 
     private ArrayList<Country> updatePreferences(ArrayList<Country> destinations) throws SQLException {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        Connection connection = databaseConnection.getConnection();
+        DatabaseConnectionModel databaseConnectionModel = new DatabaseConnectionModel();
+        Connection connection = databaseConnectionModel.getConnection();
 
         for (Country country : destinations) {
             String getPreferencesQuery = "SELECT * FROM PREFERENCES WHERE country = '" + country.getName() + "'";

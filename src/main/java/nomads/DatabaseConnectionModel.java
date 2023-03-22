@@ -3,7 +3,7 @@ package nomads;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DatabaseConnection {
+public class DatabaseConnectionModel {
     public Connection databaseLink;
 
     public Connection getConnection() {

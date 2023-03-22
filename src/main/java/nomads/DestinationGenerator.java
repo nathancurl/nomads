@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DestinationGenerator {
-    DataProcessor dataProcessor;
+    CountryModel countryModel;
 
 
     private ArrayList<Country> generate(User user) throws FileNotFoundException, SQLException {
-        dataProcessor = new DataProcessor();
-        return order(dataProcessor.generateCountries(user));
+        countryModel = new CountryModel();
+        return order(countryModel.generateCountries(user));
     }
 
     private ArrayList<Country> order(ArrayList<Country> countries) {
