@@ -29,7 +29,7 @@ to populate your preferences table with the necessary information.
 the 'docs' directory. Change the names of the columns to fit the SQL Queries (Columns are
 'Country', 'Area', 'Population', 'Region').
 
-5. Run this compile and run command in your terminal:
+5. Go to src/main/java/nomads and run this compile and run command in your terminal:
 
 ```
 javac MainApp.java
